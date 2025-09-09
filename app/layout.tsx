@@ -5,11 +5,6 @@ import Providers from "./providers";
 import PageTransition from "./components/PageTransition";
 import { checkEnvironmentVariables, warnOptionalEnvironmentVariables } from "@/lib/env-check";
 
-// 在构建时检查环境变量
-if (process.env.NODE_ENV === 'production') {
-  checkEnvironmentVariables();
-  warnOptionalEnvironmentVariables();
-}
 
 const inter = Inter({ subsets: ["latin"] });
 
