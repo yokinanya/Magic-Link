@@ -26,7 +26,9 @@ export function checkEnvironmentVariables() {
       console.error(`   - ${envVar}`);
     });
     console.error('\n请检查 .env 文件并设置所有必要的环境变量。');
-    return false;
+    throw new Error(
+      `Missing required environment variables: ${missingEnvVars.join(', ')}`
+    );
   }
 
   console.log('✅ 所有必要的环境变量已设置');
