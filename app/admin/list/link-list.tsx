@@ -151,7 +151,7 @@ export default function LinkList({ initialLinks, initialPage, pageCount, searchQ
 
         try {
             const result = await editLinkAction(editingLink.path, newToValue);
-            if (result?.error) {
+            if (result && 'error' in result && result.error) {
                 setEditError(result.error);
             } else {
                 setIsEditModalOpen(false);
@@ -176,7 +176,7 @@ export default function LinkList({ initialLinks, initialPage, pageCount, searchQ
         if (confirm(`Are you sure you want to delete the link ${path}?`)) {
             setDeletingId(path);
             const result = await deleteLinkAction(path);
-            if (result?.error) {
+            if (result && 'error' in result && result.error) {
                 alert(`Failed to delete link: ${result.error}`);
             }
             setDeletingId(null);
@@ -308,7 +308,7 @@ export default function LinkList({ initialLinks, initialPage, pageCount, searchQ
                                     </button>
                                     <form action={async () => {
                                         const result = await deleteLinkAction(link.path);
-                                        if (result?.error) {
+                                        if (result && 'error' in result && result.error) {
                                             alert(`Failed to delete link: ${result.error}`);
                                         }
                                     }}>
