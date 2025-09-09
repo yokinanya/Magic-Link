@@ -1,10 +1,6 @@
 {
   "dependencies": {
-    "@auth/express": "^0.11.0",
-    "@auth/sveltekit": "^1.10.0",
     "@tailwindcss/postcss": "^4.1.13",
-    "express": "^5.1.0",
-    "express-rate-limit": "^8.0.1",
     "mongodb": "^6.18.0",
     "next": "^15.5.2",
     "next-auth": "^5.0.0-beta.29",
@@ -24,6 +20,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "auth": "npx auth@latest"
   }
 }
