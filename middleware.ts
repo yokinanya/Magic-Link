@@ -10,6 +10,11 @@ const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION || 'Links';
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Skip middleware for NextAuth API routes to avoid conflicts
+  if (pathname.startsWith('/api/auth')) {
+    return NextResponse.next();
+  }
+
   try {
     const client = await clientPromise;
     const db = client.db(MONGODB_DB);

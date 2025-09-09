@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import PageTransition from "./components/PageTransition";
+import { checkEnvironmentVariables, warnOptionalEnvironmentVariables } from "@/lib/env-check";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
