@@ -77,8 +77,10 @@ async function getLinks(page: number, searchQuery: string | undefined) {
     const pageCount = Math.ceil(totalLinks / pageSize);
 
     const serializedLinks = links.map((link) => ({
-      ...link,
       _id: link._id.toString(),
+      path: link.path as string,
+      to: link.to as string,
+      creater: link.creater as string,
     }));
 
     return {
