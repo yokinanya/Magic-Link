@@ -107,13 +107,13 @@ export default function AuthButton({ googleEnabled = false, azureEnabled = false
   if (session) {
     return (
       <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2 bg-gray-100 rounded-full px-4 py-2">
+        <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 rounded-full pl-1 pr-3 py-1 transition-colors border border-transparent hover:border-gray-300 dark:hover:border-gray-600">
           <img
             src={session.user?.image || "/default-avatar.png"}
             alt={session.user?.name || "User"}
-            className="w-8 h-8 rounded-full"
+            className="w-8 h-8 rounded-full shadow-sm"
           />
-          <p className="text-gray-700 font-medium truncate max-w-[120px]">
+          <p className="text-gray-700 dark:text-gray-200 font-medium truncate max-w-[100px] sm:max-w-[200px] text-sm">
             {session.user?.name || "User"}
           </p>
         </div>

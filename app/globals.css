@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 /* 页面进入动画 */
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(10px); }
@@ -38,23 +40,23 @@
 
 /* 动画类 */
 .animate-fade-in {
-  animation: fade-in 0.5s ease-out forwards;
+  animation: fade-in 0.2s ease-out forwards;
 }
 
 .animate-scale-in {
-  animation: scale-in 0.3s ease-out forwards;
+  animation: scale-in 0.15s ease-out forwards;
 }
 
 .animate-slide-in {
-  animation: slide-in 0.4s ease-out forwards;
+  animation: slide-in 0.2s ease-out forwards;
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.5s ease-out forwards;
+  animation: fade-in-up 0.2s ease-out forwards;
 }
 
 .animate-fade-in-down {
-  animation: fade-in-down 0.5s ease-out forwards;
+  animation: fade-in-down 0.2s ease-out forwards;
 }
 
 .animate-pulse-soft {
@@ -96,6 +98,56 @@
 /* 卡片悬停效果 */
 .card-hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* NekoHomePage Design Styles */
+
+/* Slide In Up Animation */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-slide-in-up {
+  animation: slideInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Glass Effect Card */
+.glass-effect {
+  @apply backdrop-blur-md border border-white/30 dark:border-gray-700/30 rounded-2xl shadow-2xl p-8 max-w-2xl mx-auto;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  
+  /* Light theme */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Reduced opacity for better look */
+}
+
+/* Dark theme overrides if class is present on html/body or system preference */
+@media (prefers-color-scheme: dark) {
+  .glass-effect {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Avatar Style */
+.avatar-style {
+  @apply w-32 h-32 rounded-full object-cover border-4 border-white dark:border-gray-800 shadow-lg hover:scale-110 transition-transform duration-500;
 }
 
 .card-hover:hover {

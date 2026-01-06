@@ -7,7 +7,7 @@ export default async function HomePage() {
 
   // If the user is already logged in, redirect them to the admin page.
   if (session) {
-    redirect("/admin/create");
+    redirect("/admin");
   }
 
   // Check which providers are enabled via environment variables
@@ -21,66 +21,58 @@ export default async function HomePage() {
     process.env.AUTH_MICROSOFT_ENTRA_ID_ISSUER
   );
 
-  // If not logged in, show the full-page login UI.
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4 animate-fade-in">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          <div className="flex justify-center mb-6">
-            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-3 rounded-full shadow-lg button-hover animate-pulse-soft">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-12 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                />
-              </svg>
-            </div>
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-500">
+      <div className="glass-effect w-full relative z-10 animate-slide-in-up">
+        {/* Avatar / Logo Section */}
+        <div className="flex justify-center mb-6 animate-slide-in-up" style={{ animationDelay: '0.1s' }}>
+          <div className="w-32 h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-lg flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600 overflow-hidden hover:scale-110 transition-transform duration-500">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-16 w-16 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+              />
+            </svg>
           </div>
+        </div>
 
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-2 tracking-tight gradient-text-animate">
-            Welcome to{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-              Magic Link
-            </span>
-          </h1>
+        {/* Title */}
+        <h1 
+          className="text-4xl font-bold mb-4 text-center text-gray-900 dark:text-white drop-shadow-sm"
+        >
+          Magic Link
+        </h1>
 
-          <p className="text-lg text-gray-600 mt-4 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        {/* Description */}
+        <div className="max-w-md mx-auto mb-8 text-center space-y-2">
+          <p className="text-gray-600 dark:text-gray-200 font-medium">
             Secure authentication with multiple OAuth providers
+          </p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Please sign in with your account to continue
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl shadow-xl card-hover animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-gray-800">Sign In</h2>
-              <p className="text-gray-600">
-                Please sign in with your account to continue
-              </p>
-            </div>
-
-            <div className="flex justify-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <AuthButton googleEnabled={googleEnabled} azureEnabled={azureEnabled} />
-            </div>
-
-            <div className="mt-6 text-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
-              <p className="text-sm text-gray-500">
-                By signing in, you agree to our Terms of Service and Privacy
-                Policy
-              </p>
-            </div>
+        {/* Auth Buttons */}
+        <div className="flex justify-center mb-8">
+          <div className="w-full max-w-sm">
+            <AuthButton googleEnabled={googleEnabled} azureEnabled={azureEnabled} />
           </div>
         </div>
 
-        <div className="text-center text-gray-500 text-sm mt-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <p>© 2023 Magic Link. All rights reserved.</p>
+        {/* Footer */}
+        <div className="text-center">
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            © 2026 Magic Link. All rights reserved.
+          </p>
         </div>
       </div>
     </main>

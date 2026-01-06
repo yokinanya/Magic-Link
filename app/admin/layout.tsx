@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import AuthButton from "@/app/auth-button";
+import ThemeToggle from "@/app/components/ThemeToggle";
 
 export default async function AdminLayout({
   children,
@@ -16,24 +17,21 @@ export default async function AdminLayout({
 
   return (
     <>
-      <nav className="bg-white shadow-md fixed-top">
+      <nav className="bg-white dark:bg-gray-900 shadow-md fixed top-0 w-full z-10 transition-colors">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-3">
-            <Link href="/admin/create" className="text-xl font-bold">
+            <Link href="/admin" className="text-xl font-bold dark:text-white">
               Magic Link
             </Link>
-            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-8">
-              <Link href="/admin/create" className="text-gray-600 hover:text-blue-500 font-medium transition-colors duration-200">Create</Link>
-              <Link href="/admin/list" className="text-gray-600 hover:text-blue-500 font-medium transition-colors duration-200">List</Link>
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <AuthButton />
             </div>
-            <AuthButton />
           </div>
         </div>
       </nav>
-      <main className="pt-20">
-        <div className="container mx-auto px-4 py-8">
+      <main className="pt-20 bg-gray-50 dark:bg-gray-900 transition-colors h-screen overflow-hidden box-border">
           {children}
-        </div>
       </main>
     </>
   );
